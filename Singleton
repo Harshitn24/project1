@@ -1,0 +1,55 @@
+package Composite;
+import java.util.ArrayList;
+import java.util.List;
+
+interface Student {
+    void display();
+}
+
+class SingleStudent implements Student {
+    String name;
+    int age;
+
+    public SingleStudent(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void display() {
+        System.out.println("Student Name: " + name + " | Age: " + age);
+    }
+}
+
+class GroupStudent implements Student {
+    List<Student> s = new ArrayList<>();
+
+    public void add(Student student) {
+        s.add(student);
+    }
+
+    public void remove(Student student) {
+        s.remove(student);
+    }
+
+    public void display() {
+        for (Student student : s) {
+            student.display();
+        }
+    }
+}
+
+class compositepattern {
+    public static void main(String[] args) {
+        SingleStudent s1 = new SingleStudent("Harshit", 19);
+        SingleStudent s2 = new SingleStudent("Kenil", 18);
+        SingleStudent s3 = new SingleStudent("mahil",19);
+
+        GroupStudent group = new GroupStudent();
+        group.add(s1);
+        group.add(s2);
+        group.add(s3);
+        group.display();
+        group.remove(s3);
+        group.display();
+    }
+}
