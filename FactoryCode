@@ -1,0 +1,68 @@
+package factorydata;
+
+public interface shape {
+    void area();
+}
+
+public class rectangle implements shape{
+
+    @Override
+    public void area() {
+        System.out.println("Area of rectangle is (length)*(width)");
+    }
+}
+
+public class circle implements shape{
+
+    @Override
+    public void area() {
+        System.out.println("Area of circle is (pie)*(radius)*(radius)");
+    }
+}
+
+public class square implements shape{
+
+    @Override
+    public void area() {
+        System.out.println("Area of square is (side)*(side)");
+    }
+}
+
+//new File//
+import factorydata.rectangle;
+import factorydata.shape;
+import factorydata.square;
+import factorydata.circle;
+import java.util.Scanner;
+
+
+public class factorydesign {
+    public shape getshape(String sh)
+    {
+        if(sh.equalsIgnoreCase("SQUARE"))
+        {
+            return new square();
+        }
+        else if(sh.equalsIgnoreCase("RECTANGLE"))
+        {
+            return new rectangle();
+        }
+        else if(sh.equalsIgnoreCase("CIRCLE"))
+        {
+            return new circle();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your shape: ");
+        String sha1 = sc.nextLine();
+        factorydesign fd1 = new factorydesign();
+        shape sh1 = fd1.getshape(sha1);
+        sh1.area();
+    }
+}
